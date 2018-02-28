@@ -58,7 +58,9 @@
                                     <td><?php echo $rows->price; ?></td>
                                     <td id=""><?php echo $rows->total; ?></td>
                                       <td id=""><?php echo $rows->created_by; ?></td>
-                                      <td id=""><a href="<?php echo base_url(); ?>salescontroller/delete_sales_id<?php echo $rows->id; ?>"><?php echo $rows->id; ?></a></td>
+                                      <td id=""><a href="<?php echo base_url(); ?>salescontroller/delete_sales_id<?php echo $rows->id; ?>"><?php echo $rows->id; ?><i class="far fa-edit"></i></a>
+                                        <a onclick="delete_sales_id(<?php echo $rows->id; ?>)"><i class="far fa-trash-alt"></i></a>
+                                    </td>
 
 
                                 </tr>
@@ -79,6 +81,34 @@
 </div>
 </div>
 <script language="javascript" type="text/javascript">
+function delete_sales_id(id){
 
+  swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm!'
+  }).then(function(){
+            $.ajax({
+              type:"POST",
+              data:{ id: id },
+              url: "<?php echo base_url();  ?>salescontroller/delete_sales_id",
+              cache: false,
+              success: function(data){
+              if(data=="success"){
+                location.reload();
+
+              }else{
+                 swal("Something Went wrong");
+              }
+              }
+            });
+  }).catch(function(reason){
+    swal("Something Went wrong");
+  });
+}
 
        </script>

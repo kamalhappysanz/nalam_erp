@@ -114,6 +114,12 @@ class Salescontroller extends CI_Controller {
 			}
 		}
 
+		public function delete_sales_id(){
+			 $id=$this->input->post('id');
+			 $datas['res']=$this->salesmodel->delete_sales_id($id);
+
+		}
+
 
 
 

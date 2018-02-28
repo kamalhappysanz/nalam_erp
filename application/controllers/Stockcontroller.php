@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Stockcontroller extends CI_Controller {
 
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('loginmodel');
 		$this->load->model('salesmodel');
+		$this->load->model('productmodel');
 		$this->load->helper('url');
 		$this->load->library('session');
 
@@ -31,45 +31,27 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
-	}
-
-	public function home()
-	{
-		$datas=$this->session->userdata();
-
-		$user_id=$this->session->userdata('id');
-		$user_role=$this->session->userdata('user_role');
-		if($user_id){
-			$this->load->view('admin_header');
-			$this->load->view('dashboard');
-			$this->load->view('admin_footer');
-		}else{
-			redirect('welcome/login');
-		}
-
-
-	}
-
-
-	public function login()
-	{
-		$this->load->view('login');
-	}
-	public function dashboard(){
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('id');
 		$user_role=$this->session->userdata('user_role');
 		if($user_id){
-			$datas['today_sales_res']=$this->salesmodel->today_sales_list();
-			$datas['previous_day_sales_list']=$this->salesmodel->previous_day_sales_list();
-			$datas['this_week_sales_list']=$this->salesmodel->this_week_sales_list();
-			$datas['current_month_sales_list']=$this->salesmodel->current_month_sales_list();
+			$datas['res']=$this->productmodel->list_of_products_active();
 			$this->load->view('admin_header');
-			$this->load->view('dashboard',$datas);
+			$this->load->view('admin/stocks/add_stocks',$datas);
 			$this->load->view('admin_footer');
 		}else{
 			redirect('welcome/login');
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
 }

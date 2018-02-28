@@ -14,7 +14,8 @@ Class Salesmodel extends CI_Model
    {
      $counts=count($product_id);
         for($i=0;$i<$counts;$i++){
-         $total = $units[$i] * $price[$i];
+
+          $total = $units[$i] * $price[$i];
            $daliy_insert="INSERT INTO daily_sales_report(product_id,sales_date,units,price,total,user_id,created_by,created_at,updated_at,updated_by) VALUES('$product_id[$i]','$sales_date','$units[$i]','$price[$i]','$total','$user_id','$user_id',NOW(),NOW(),'$user_id')";
           $res_ga=$this->db->query($daliy_insert);
        }
@@ -62,6 +63,40 @@ Class Salesmodel extends CI_Model
           $result=$this->db->query($select);
           return $res=$result->result();
         }
+
+        function delete_sales_id($id){
+          $delete_query="DELETE FROM daily_sales_report where id='$id'";
+          $result=$this->db->query($delete_query);
+          if($result){
+            echo "success";
+          }else{
+            echo "failed";
+          }
+
+        }
+
+
+          function today_sales_list(){
+            $select="SELECT sum(dsr.total) as total_sales FROM  daily_sales_report as dsr left join product_master as pm on pm.id=dsr.product_id Where dsr.sales_date=CURDATE()";
+
+            $result=$this->db->query($select);
+            return $res=$result->result();
+          }
+          function previous_day_sales_list(){
+            $select="SELECT sum(dsr.total) as total_sales FROM  daily_sales_report as dsr left join product_master as pm on pm.id=dsr.product_id Where dsr.sales_date=CURDATE()-1";
+            $result=$this->db->query($select);
+            return $res=$result->result();
+          }
+          function this_week_sales_list(){
+            $select="SELECT sum(dsr.total) as total_sales FROM  daily_sales_report as dsr left join product_master as pm on pm.id=dsr.product_id Where dsr.sales_date BETWEEN DATE_SUB(CURDATE(),INTERVAL 7 DAY) AND CURDATE()";
+            $result=$this->db->query($select);
+            return $res=$result->result();
+          }
+          function current_month_sales_list(){
+            $select="SELECT sum(dsr.total) as total_sales FROM  daily_sales_report as dsr left join product_master as pm on pm.id=dsr.product_id Where MONTH(dsr.sales_date) = MONTH(CURDATE())";
+            $result=$this->db->query($select);
+            return $res=$result->result();
+          }
 
 
 

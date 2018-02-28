@@ -17,6 +17,7 @@
         <link href="<?php echo base_url(); ?>assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css" />
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+         <link href="<?php echo base_url(); ?>plugins/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/pages/sweetalert2.min.css" rel="stylesheet" type="text/css">
         <!-- jQuery  -->
         <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
@@ -116,7 +117,7 @@
                         <ul class="metismenu" id="side-menu">
                             <li class="menu-title">Navigation</li>
                             <li>
-                                <a href="">
+                                <a href="<?php echo base_url(); ?>welcome/dashboard">
                                     <i class="fi-air-play"></i> <span> Dashboard </span>
                                 </a>
                             </li>

@@ -22,6 +22,8 @@
   <!-- Buttons examples -->
   <script src="<?php echo base_url(); ?>plugins/datatables/dataTables.buttons.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/datatables/buttons.bootstrap4.min.js"></script>
+   <script src="<?php echo base_url(); ?>plugins/moment/moment.js"></script>
+   <script src='<?php echo base_url(); ?>plugins/fullcalendar/js/fullcalendar.min.js'></script>
   <!-- <script src="<?php echo base_url(); ?>plugins/datatables/jszip.min.js"></script> -->
   <script src="<?php echo base_url(); ?>plugins/datatables/pdfmake.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/datatables/vfs_fonts.js"></script>
