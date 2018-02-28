@@ -72,24 +72,10 @@
 
 
             <div class="row">
-                <div class="col-xl-7">
-                    <div class="card-box">
-                        <h4 class="header-title">Calender View</h4>
-                          <div id="calendar"></div>
-
-
-
-                    </div>
+                <div class="col-xl-12">
+                  
                 </div>
-                <div class="col-xl-5">
-                    <div class="card-box">
-                        <h4 class="header-title">Sales History</h4>
 
-
-
-
-                    </div>
-                </div>
             </div>
             <!-- end row -->
 

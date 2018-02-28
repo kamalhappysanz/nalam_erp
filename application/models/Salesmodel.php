@@ -98,6 +98,12 @@ Class Salesmodel extends CI_Model
             return $res=$result->result();
           }
 
+          function get_daywise_sales(){
+             $query="SELECT sales_date as start,sum(total) as title, sales_date as description FROM daily_sales_report group by sales_date";
+            $result=$this->db->query($query);
+            return $result->result();
+          }
+
 
 
 

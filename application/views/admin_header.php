@@ -31,6 +31,9 @@
         <script src="<?php echo base_url(); ?>assets/js/modernizr.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/pages/sweetalert2.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/sweet-alert.init.js"></script>
+        <script src="<?php echo base_url(); ?>plugins/moment/moment.js"></script>
+        <!-- <script src='<?php echo base_url(); ?>plugins/fullcalendar/js/fullcalendar.min.js'></script> -->
+          <script src="<?php echo base_url(); ?>assets/pages/fullcalendar.min.js"></script>
         <!--  Forms Validations Plugin -->
         <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>

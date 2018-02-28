@@ -56,6 +56,13 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	public function calender()
+	{
+		$this->load->view('admin_header');
+		$this->load->view('admin/calender');
+		$this->load->view('admin_footer');
+
+	}
 	public function dashboard(){
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('id');
