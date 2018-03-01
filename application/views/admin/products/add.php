@@ -22,6 +22,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="inputEmail3" class="col-4 col-form-label">Product Base Price<span class="text-danger">*</span></label>
+                                <div class="col-7">
+                                    <input type="text" required="" name="base_price" class="form-control" id="inputEmail3" placeholder="Base Price">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-4 col-form-label">Status<span class="text-danger">*</span></label>
                                 <div class="col-7">
                                   <select class="form-control" name="status">
@@ -63,6 +69,7 @@
                                                 <th class="sorting_asc">S.No</th>
                                                 <th class="sorting_asc"> Product Name</th>
                                                 <th class="sorting_asc"> Product Short Code</th>
+                                                  <th class="sorting_asc"> Base Price</th>
                                                 <th class="sorting_asc"> Status</th>
                                                 <th class="sorting_asc"> Action</th>
 
@@ -77,6 +84,7 @@
                                                 <td class="sorting_1"><?php echo $i; ?></td>
                                                 <td><?php echo $rows->product_name; ?></td>
                                                 <td><?php echo $rows->product_short_code; ?></td>
+                                                  <td><?php echo $rows->base_price; ?></td>
                                                 <td><?php echo $rows->status; ?></td>
                                                 <td><a href="<?php echo base_url(); ?>productcontroller/get_product_id/<?php echo $rows->id ?>"><i class="far fa-edit"></i></a></td>
 

@@ -4,7 +4,7 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-11">
                     <div class="card-box">
                         <h4 class="header-title m-t-0">Daily Sales Master</h4>
 
@@ -17,8 +17,7 @@
                                 </div>
                             </div>
 
-                          <a  class="btn" onclick="addsales()" >  <i class="fas fa-plus-square"></i></a>
-
+                      
                             <!-- <div class="form-row align-items-center">
                                   <div class="col-auto">
                                       <label class="sr-only" for="inlineFormInput">Name</label>
@@ -51,7 +50,11 @@
                               </div> -->
                               <br>
                               <div id="addrows"></div>
+                              <div class="input_fields_wrap">
 
+                              <br>
+                              </div>
+                                <button class="add_field_button">Add More Fields</button>
                             <div class="form-group row">
                                 <div class="col-8 offset-4">
                                     <button type="submit" class="btn btn-gradient waves-effect waves-light">
@@ -125,11 +128,52 @@ $('#product_master_form').validate({ // initialize the plugin
     }
 });
 
-function addsales(){
 
-  $('#addrows').append('<div class="form-row align-items-center"><div class="col-auto"><label class="sr-only" for="inlineFormInput">Name</label><select class="form-control" name="product_id[]" required><option>Select</option><?php foreach($res as $rw){ ?><option value="<?php echo $rw->id; ?>"><?php echo $rw->product_name; ?></option><?php } ?></select></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Units</label><div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control" id="inlineFormInputGroup" name="units[]" placeholder="Units"></div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Price</label> <div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control" id="inlineFormInputGroup" name="price[]" placeholder="Price"> </div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Comments</label><div class="input-group mb-2 mb-sm-0"> <input type="text" class="form-control" id="inlineFormInputGroup" name="comments[]" placeholder="Comments"></div></div></div><br>');
+
+$(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+
+            $(wrapper).append('<div><div class="form-row align-items-center"><div class="col-auto"><label class="sr-only" for="inlineFormInput">Name</label><select class="form-control product_id" id="product_id'+x+'" onchange="get_price('+x+')" name="product_id[]" required><option>Select</option><?php foreach($res as $rw){ ?><option value="<?php echo $rw->id; ?>"><?php echo $rw->product_name; ?></option><?php } ?></select></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Units</label><div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control units" id="units'+x+'" name="units[]" placeholder="Units" onblur="calculate_price('+x+')"></div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Price</label> <div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control price" id="price'+x+'" name="price[]" placeholder="Price"> </div></div><div class="col-auto"><div class="input-group mb-1 mb-sm-1"><input type="text" class="form-control price" id="total'+x+'" name="" placeholder="total"> </div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Comments</label><div class="input-group mb-2 mb-sm-0"> <input type="text" class="form-control" id="comments'+x+'" name="comments[]" placeholder="Comments"></div></div></div><br><a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+
+
+
+function get_price(sel){
+  var selected_val=$('#product_id'+sel+'').val();
+  $.ajax({
+        type: "POST",
+        url: '<?php echo base_url(); ?>salescontroller/get_price_for_product',
+        data: {selected_val:selected_val}, // serializes the form's elements.
+        success: function(data)
+        {
+          if(data=='0'){
+            $('#price'+sel+'').val(data);
+          }else{
+              $('#price'+sel+'').val(data);
+          }
+        }
+      });
 }
-
+function calculate_price(price){
+    var prd_units=$('#units'+price+'').val();
+    var prd_price=$('#price'+price+'').val();
+    var total_price=  prd_units*prd_price;
+    $('#total'+price+'').val(total_price);
+}
 </script>
 <script>
 	$(document).ready(function(){

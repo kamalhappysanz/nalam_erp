@@ -23,6 +23,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="inputEmail3" class="col-4 col-form-label">Product Base Price<span class="text-danger">*</span></label>
+                                <div class="col-7">
+                                    <input type="text" required="" name="base_price" class="form-control" id="inputEmail3" placeholder="Base Price" value="<?php echo $rows->base_price;  ?>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="inputEmail3" class="col-4 col-form-label">Status<span class="text-danger">*</span></label>
                                 <div class="col-7">
                                   <select class="form-control" name="status">

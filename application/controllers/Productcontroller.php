@@ -97,8 +97,9 @@ class Productcontroller extends CI_Controller {
 		if($user_id){
 			$product_name=$this->input->post('product_name');
 			$product_short_code=$this->input->post('product_short_code');
+			$base_price=$this->input->post('base_price');
 			$status=$this->input->post('status');
-			$data=$this->productmodel->create_product($product_name,$product_short_code,$status,$user_id);
+			$data=$this->productmodel->create_product($product_name,$product_short_code,$base_price,$status,$user_id);
 
 		}else{
 
@@ -115,8 +116,9 @@ class Productcontroller extends CI_Controller {
 			$product_name=$this->input->post('product_name');
 			$product_id=$this->input->post('product_id');
 			$product_short_code=$this->input->post('product_short_code');
+			$base_price=$this->input->post('base_price');
 			$status=$this->input->post('status');
-			$data=$this->productmodel->save_product($product_name,$product_short_code,$status,$user_id,$product_id);
+			$data=$this->productmodel->save_product($product_name,$product_short_code,$base_price,$status,$user_id,$product_id);
 
 		}else{
 

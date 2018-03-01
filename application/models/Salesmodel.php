@@ -18,8 +18,8 @@ Class Salesmodel extends CI_Model
           $total = $units[$i] * $price[$i];
            $daliy_insert="INSERT INTO daily_sales_report(product_id,sales_date,units,price,total,user_id,created_by,created_at,updated_at,updated_by) VALUES('$product_id[$i]','$sales_date','$units[$i]','$price[$i]','$total','$user_id','$user_id',NOW(),NOW(),'$user_id')";
           $res_ga=$this->db->query($daliy_insert);
-       }
-       if ($res_ga){
+        }
+        if ($res_ga){
                echo "success";
           } else {
             echo "failed";

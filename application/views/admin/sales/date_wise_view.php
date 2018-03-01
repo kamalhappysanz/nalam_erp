@@ -58,7 +58,7 @@
                                     <td><?php echo $rows->price; ?></td>
                                     <td id=""><?php echo $rows->total; ?></td>
                                       <td id=""><?php echo $rows->created_by; ?></td>
-                                      <td id=""><a href="<?php echo base_url(); ?>salescontroller/delete_sales_id<?php echo $rows->id; ?>"><?php echo $rows->id; ?><i class="far fa-edit"></i></a>
+                                      <td id=""><a href="<?php echo base_url(); ?>salescontroller/update_sales_id/<?php echo $rows->id; ?>"><i class="far fa-edit"></i></a>
                                         <a onclick="delete_sales_id(<?php echo $rows->id; ?>)"><i class="far fa-trash-alt"></i></a>
                                     </td>
 

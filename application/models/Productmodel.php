@@ -60,9 +60,9 @@ Class Productmodel extends CI_Model
           }
 
 
-      function create_product($product_name,$product_short_code,$status,$user_id)
+      function create_product($product_name,$product_short_code,$base_price,$status,$user_id)
        {
-         $create="INSERT INTO product_master (product_name,product_short_code,status,created_by,created_at) VALUES('$product_name','$product_short_code','$status','$user_id',NOW())";
+         $create="INSERT INTO product_master (product_name,product_short_code,base_price,status,created_by,created_at) VALUES('$product_name','$product_short_code','$base_price','$status','$user_id',NOW())";
          $res=$this->db->query($create);
          if($res){
            echo "success";
@@ -88,8 +88,8 @@ Class Productmodel extends CI_Model
            $result=$this->db->query($sql);
            return $res=$result->result();
         }
-        function save_product($product_name,$product_short_code,$status,$user_id,$product_id)         {
-           $create="UPDATE product_master SET product_name='$product_name',product_short_code='$product_short_code',status='$status',created_by='$user_id',created_at=NOW() Where id='$product_id'";
+        function save_product($product_name,$product_short_code,$base_price,$status,$user_id,$product_id)         {
+           $create="UPDATE product_master SET product_name='$product_name',product_short_code='$product_short_code',base_price='$base_price',status='$status',created_by='$user_id',created_at=NOW() Where id='$product_id'";
            $res=$this->db->query($create);
            if($res){
              echo "success";
@@ -99,7 +99,17 @@ Class Productmodel extends CI_Model
 
           }
 
-
+          function get_price_for_product($id){
+           $sql="SELECT * FROM product_master Where id='$id'";
+            $result=$this->db->query($sql);
+            $res=$result->result();
+            if($result->num_rows()==0){
+              echo "0";
+            }else{
+                foreach($res as $rows){}
+                echo $rows->base_price;
+           }
+          }
 
 
 

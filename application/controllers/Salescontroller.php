@@ -126,6 +126,11 @@ class Salescontroller extends CI_Controller {
 
 		}
 
+		public function get_price_for_product(){
+			 $id=$this->input->post('selected_val');
+			  $datas['res']=$this->productmodel->get_price_for_product($id);
+		}
+
 
 
 
