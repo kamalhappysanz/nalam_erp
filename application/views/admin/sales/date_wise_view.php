@@ -21,6 +21,53 @@
           <div class="result pull-right"><b>Total: </b> <?php echo $tot->total_sales; ?></div>
           </div>
           </div>
+          <div class="row">
+              <div class="col-12">
+                  <div class="card-box table-responsive">
+                      <h4 class="m-t-0 header-title"><b>Day Wise Total Sales List  (<?php if(empty($sales_date)){}else{ echo $sales_date;}   ?> <?php if(empty($sales_month)){}else{ echo $sales_month;}   ?> - <?php if(empty($sales_year)){}else{ echo $sales_year;}   ?>)</b></h4>
+
+
+                      <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <table id="datatable_2" class="table table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                                      <thead>
+                                          <tr role="row">
+                                              <th class="sorting_asc">S.No</th>
+
+                                              <th class="sorting_asc"> Sales Date</th>
+                                              <th class="sorting_asc"> Total</th>
+
+
+
+
+                                          </tr>
+                                      </thead>
+
+                                      <tbody>
+                                        <?php   $i=1; foreach ($day_sales as $day_res) { ?>
+
+
+                                          <tr role="row" class="odd">
+                                              <td class=""><?php echo $i; ?>
+                                              </td>
+
+                                              <td><?php echo $day_res->sales_date; ?></td>
+                                              <td><?php echo $day_res->day_sales; ?></td>
+                                            </tr>
+                                            <?php $i++; }  ?>
+
+                                      </tbody>
+                                  </table>
+
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+          </div>
+
 <div class="row">
     <div class="col-12">
         <div class="card-box table-responsive">

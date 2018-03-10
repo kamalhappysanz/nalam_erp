@@ -32,8 +32,8 @@
   <!-- Responsive examples -->
   <script src="<?php echo base_url(); ?>plugins/datatables/dataTables.responsive.min.js"></script>
   <script src="<?php echo base_url(); ?>plugins/datatables/responsive.bootstrap4.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker3.css"/>
 
 
 <!-- Chart JS -->
@@ -50,6 +50,19 @@
            $(document).ready(function() {
 
                $('#datatable').DataTable();
+
+               //Buttons examples
+               var table = $('#datatable-buttons').DataTable({
+                   lengthChange: false,
+                   buttons: ['copy', 'excel', 'pdf']
+               });
+
+               table.buttons().container()
+                       .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+           } );
+           $(document).ready(function() {
+
+               $('#datatable_2').DataTable();
 
                //Buttons examples
                var table = $('#datatable-buttons').DataTable({

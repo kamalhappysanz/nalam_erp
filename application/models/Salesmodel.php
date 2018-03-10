@@ -104,7 +104,11 @@ Class Salesmodel extends CI_Model
             return $result->result();
           }
 
-
+          function day_sales($sales_month,$sales_year){
+               $select="SELECT id,sales_date,sum(price) as day_sales  from daily_sales_report as dsr Where Month(dsr.sales_date)='$sales_month' and  YEAR(dsr.sales_date)='$sales_year' GROUP by sales_date";
+              $result=$this->db->query($select);
+              return $res=$result->result();
+            }
 
 
 

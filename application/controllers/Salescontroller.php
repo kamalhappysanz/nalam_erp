@@ -103,6 +103,7 @@ class Salescontroller extends CI_Controller {
 				$sales_year=$this->input->post('sales_year');
 				$datas['res']=$this->salesmodel->month_wise_sales($sales_month,$sales_year);
 				$datas['total']=$this->salesmodel->month_wise_sales_total($sales_month,$sales_year);
+				$datas['day_sales']=$this->salesmodel->day_sales($sales_month,$sales_year);
 				$datas['total_sales']=$this->salesmodel->total_sales_of_month($sales_month,$sales_year);
 				$datas['sales_month']=$sales_month;
 				$datas['sales_year']=$sales_year;
