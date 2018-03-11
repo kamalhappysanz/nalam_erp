@@ -17,7 +17,7 @@
                                 </div>
                             </div>
 
-                      
+
                             <!-- <div class="form-row align-items-center">
                                   <div class="col-auto">
                                       <label class="sr-only" for="inlineFormInput">Name</label>
@@ -112,16 +112,17 @@ $('#product_master_form').validate({ // initialize the plugin
             data: $('#product_master_form').serialize(),
             success: function(response) {
 
-                if (response == "success") {
+                if (response == "failed") {
+                    sweetAlert("Oops...", response, "error");
+                } else {
+
                     swal({
                         title: "Success",
-                        text: "Successfully.",
+                        text: response,
                         type: "success"
                     }).then(function() {
                         location.href = '<?php echo base_url(); ?>salescontroller';
                     });
-                } else {
-                    sweetAlert("Oops...", response, "error");
                 }
             }
         });
@@ -141,7 +142,7 @@ $(document).ready(function() {
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
 
-            $(wrapper).append('<div><div class="form-row align-items-center"><div class="col-auto"><label class="sr-only" for="inlineFormInput">Name</label><select class="form-control product_id" id="product_id'+x+'" onchange="get_price('+x+')" name="product_id[]" required><option>Select</option><?php foreach($res as $rw){ ?><option value="<?php echo $rw->id; ?>"><?php echo $rw->product_name; ?></option><?php } ?></select></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Units</label><div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control units" id="units'+x+'" name="units[]" placeholder="Units" onblur="calculate_price('+x+')"></div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Price</label> <div class="input-group mb-1 mb-sm-0"><input type="text" class="form-control price" id="price'+x+'" name="price[]" placeholder="Price"> </div></div><div class="col-auto"><div class="input-group mb-1 mb-sm-1"><input type="text" class="form-control price" id="total'+x+'" name="" placeholder="total"> </div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Comments</label><div class="input-group mb-2 mb-sm-0"> <input type="text" class="form-control" id="comments'+x+'" name="comments[]" placeholder="Comments"></div></div></div><br><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            $(wrapper).append('<div><div class="form-row align-items-center"><div class="col-auto"><label class="sr-only" for="inlineFormInput">Name</label><select class="form-control product_id" id="product_id'+x+'" onchange="get_price('+x+')" name="product_id[]" required><option>Select</option><?php foreach($res as $rw){ ?><option value="<?php echo $rw->id; ?>"><?php echo $rw->product_name; ?></option><?php } ?></select></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Units</label><div class="input-group mb-2 mb-sm-0"><input type="text" class="form-control units" id="units'+x+'" name="units[]" placeholder="Units" onblur="calculate_price('+x+')"></div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Price</label> <div class="input-group mb-1 mb-sm-0"><input type="text" class="form-control price" id="price'+x+'" name="price[]" placeholder="Price" onblur="calculate_price('+x+')"> </div></div><div class="col-auto"><div class="input-group mb-1 mb-sm-1"><input type="text" class="form-control price" id="total'+x+'" name="" placeholder="total"> </div></div><div class="col-auto"><label class="sr-only" for="inlineFormInputGroup">Comments</label><div class="input-group mb-2 mb-sm-0"> <input type="text" class="form-control" id="comments'+x+'" name="comments[]" placeholder="Comments"></div></div></div><br><a href="#" class="remove_field">Remove</a></div>'); //add input box
         }
     });
 
