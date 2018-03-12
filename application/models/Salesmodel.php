@@ -31,6 +31,17 @@ Class Salesmodel extends CI_Model
          }
 
 
+         function update_sales_id($id,$product_units,$product_price){
+             $total = $product_units * $product_price;
+           $update="UPDATE daily_sales_report SET units='$product_units',price='$product_price',total='$total' where id='$id'";
+            $result=$this->db->query($update);
+            if($result){
+              echo "Updated";
+            }else{
+                  echo "failed";
+            }
+         }
+
          function date_wise_sales($sales_date){
             $select="SELECT pm.product_name,dsr.* FROM  daily_sales_report as dsr left join product_master as pm on pm.id=dsr.product_id Where dsr.sales_date='$sales_date'";
 

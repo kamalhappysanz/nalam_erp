@@ -132,6 +132,20 @@ class Salescontroller extends CI_Controller {
 			  $datas['res']=$this->productmodel->get_price_for_product($id);
 		}
 
+		public function update_sales_id(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('id');
+			$user_role=$this->session->userdata('user_role');
+			if($user_id){
+				 $id=$this->input->post('id');
+				 $product_units=$this->input->post('product_units');
+				 $product_price=$this->input->post('product_price');
+				 $datas['res']=$this->salesmodel->update_sales_id($id,$product_units,$product_price);
+
+			}else{
+
+			}
+		}
 
 
 
